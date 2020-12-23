@@ -14,6 +14,8 @@
 #' @export
 #'
 
+# need add test of the input dat wether have NAs
+
 PVCA <- function(counts, meta, threshold, inter){
 
   counts.center <- t(apply(counts, 1, scale, center=TRUE, scale=FALSE))
@@ -62,7 +64,7 @@ PVCA <- function(counts, meta, threshold, inter){
     dat <- cbind(eigen.mat[,i],meta)
     colnames(dat) <- c("pc",colnames(meta))
     Rm1ML <- lme4::lmer(formula, dat, REML = TRUE, verbose = FALSE, na.action = na.omit)
-    var.vec <- unlist(VarCorr(Rm1ML))
+    var.vec <- unlist(lme4::VarCorr(Rm1ML))
     ran.var.mat <- rbind(ran.var.mat, c(var.vec[pred.list], resid = sigma(Rm1ML)^2))
   }
   ran.var.mat.std <- ran.var.mat/rowSums(ran.var.mat)
