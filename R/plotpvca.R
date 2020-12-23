@@ -10,9 +10,10 @@
 #' @export
 #'
 
+# add the default parameter
 PlotPVCA <- function(pvca.res, title){
   plot.dat <- data.frame(eff=names(pvca.res), prop=pvca.res)
-  p <- ggplot2::ggplot(plot.dat, aes(x=eff, y=prop))
+  p <- ggplot2::ggplot(plot.dat, ggplot2::aes(x=eff, y=prop))
   p <- p + ggplot2::ggtitle(title)
   p <- p + ggplot2::geom_bar(stat="identity", fill="steelblue", colour="steelblue")
   p <- p + ggplot2::geom_text(aes(label=round(prop,3), y=prop+0.04), size=4)
