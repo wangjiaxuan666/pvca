@@ -16,7 +16,7 @@ PlotPVCA <- function(pvca.res, title){
   p <- ggplot2::ggplot(plot.dat, ggplot2::aes(x=eff, y=prop))
   p <- p + ggplot2::ggtitle(title)
   p <- p + ggplot2::geom_bar(stat="identity", fill="steelblue", colour="steelblue")
-  p <- p + ggplot2::geom_text(aes(label=round(prop,3), y=prop+0.04), size=4)
+  p <- p + ggplot2::geom_text(ggplot2::aes(label=round(prop,3), y=prop+0.04), size=4)
   p <- p + ggplot2::scale_x_discrete(limits=names(pvca.res))
   p <- p + ggplot2::scale_y_continuous(limits = c(0,1))
   p <- p + ggplot2::labs(x= "Effects", y= "Weighted average proportion variance")
